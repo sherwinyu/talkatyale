@@ -1,0 +1,2 @@
+module ChatLinesHelper
+end

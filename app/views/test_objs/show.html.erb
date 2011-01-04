@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @test_obj.name %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @test_obj.content %>
+</p>
+
+
+<%= link_to 'Edit', edit_test_obj_path(@test_obj) %> |
+<%= link_to 'Back', test_objs_path %>
