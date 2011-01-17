@@ -1,0 +1,28 @@
+<!--------- This partial displays a chatroom's lines. DOES NOT include user list or  ---
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Chat Room:</b>
+  <%= @chat_room.name %>
+</p>
+<p> 
+
+<table>
+<b> ChatLines : </b>
+<% @chat_room.chat_lines.each do |chat_line| %>
+	<tr> 
+		<td><%= chat_line.created_at %></td>
+		<td><%= chat_line.user.name %></td>
+		<td><%= chat_line.content %></td>
+	</tr>
+<%end%>
+</table>
+
+<%= render 'chat_lines/form' %>
+<%= list_users %>
+
+
+
+
+<%= link_to 'Edit', edit_chat_room_path(@chat_room) %> |
+<%= link_to 'Back', chat_rooms_path %>

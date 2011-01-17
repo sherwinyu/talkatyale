@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110101175816) do
+ActiveRecord::Schema.define(:version => 20110106005057) do
 
   create_table "chat_lines", :force => true do |t|
     t.integer  "chat_room_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20110101175816) do
     t.integer  "chat_room_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password"
   end
 
 end

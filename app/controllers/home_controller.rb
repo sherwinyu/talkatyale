@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
   def index
-	  @chat_room = ChatRoom.first
+  	session[:cur_chat_room_id]=nil
   end
-
 end

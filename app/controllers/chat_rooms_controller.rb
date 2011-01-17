@@ -13,10 +13,13 @@ class ChatRoomsController < ApplicationController
   # GET /chat_rooms/1
   # GET /chat_rooms/1.xml
   def show
+  	session[:cur_chat_room_id] = params[:id]
     @chat_room = ChatRoom.find(params[:id])
-	@chat_line = ChatLine.new
+	@chat_line = ChatLine.new # for the form. Where should we be setting this up...?
 	puts "\n\n chatline::\t\t" + @chat_line.inspect
 	@chat_line.chat_room = @chat_room
+	@chat_line.user = User.new #get_current_user
+
 	puts "\n\n chatline::\t\t" + @chat_line.inspect
 	
 

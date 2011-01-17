@@ -1,6 +1,12 @@
 class ChatLinesController < ApplicationController
   # GET /chat_lines
   # GET /chat_lines.xml
+  before_filter :debug
+
+  def debug
+  	puts "session is:" + session.inspect
+	puts "params are:" + params.inspect
+  end 
   def index
     @chat_lines = ChatLine.all
 
@@ -25,6 +31,8 @@ class ChatLinesController < ApplicationController
   # GET /chat_lines/new.xml
   def new
     @chat_line = ChatLine.new
+	@chat_line.user = get_current_user
+	@chat_line.chat_room = get_current_chat_room
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,8 +52,8 @@ class ChatLinesController < ApplicationController
 	puts params[:chat_line]["chat_room"].inspect
 	puts params[:chat_line]["user"].inspect
 	puts params[:chat_line]["content"].inspect
-	params[:chat_line]["chat_room"]=ChatRoom.first #ChatRoom.find(params[:chat_line]["chat_room"])
-	params[:chat_line]["user"]=User.first #.find(params[:chat_line]["user"])
+	params[:chat_line]["chat_room"]=ChatRoom.find_by_name!(params[:chat_line]["chat_room"])
+	params[:chat_line]["user"]=User.find_by_name! params[:chat_line]["user"] #.find(params[:chat_line]["user"])
 
     @chat_line = ChatLine.new(params[:chat_line])
 

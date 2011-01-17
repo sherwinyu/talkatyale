@@ -13,15 +13,14 @@
 
   <div class="field">
     <%= f.label :chat_room %><br />
-    <%= f.text_field :chat_room %>
+    <%= f.text_field :chat_room, :value=> @chat_line.chat_room.try(:name) %>
   </div>
   <div class="field">
     <%= f.label :user %><br />
-    <%= f.text_field :user %>
+    <%= f.text_field :user, :value=>@chat_line.user.try(:name) %>
   </div>
   <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
+    <%= f.text_field :content, :size=>140, :value=>"Enter your message here" %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -1,0 +1,10 @@
+﻿<!-- app/views/user/login.rhtml -->
+  <% if flash[:message] %><div><%= flash[:message] %></div><% end %>
+  <% if flash[:error] %><div><%= flash[:error] %></div><% end %>
+
+  <%= form_tag :action => 'process_login' do%>
+   Username: <%= text_field "user", "name" %>&#x00A;
+    Password: <%= password_field "user", "password" %>&#x00A;
+    <%= submit_tag %>
+  <% end %> 
+

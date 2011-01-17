@@ -83,4 +83,25 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+	def process_login
+		if user = User.authenticate(params[:user])
+			session[:user_id] = user.id
+			redirect_to session[:return_to] || '/'
+		else
+			flash[:error] = 'Invalid login.'
+			redirect_to :action=> 'login', :user => params[:user][:name]
+		end
+	end
+
+	def login
+      @user = User.new
+      @user.name = params[:name]
+    end
+
+	def logout
+		reset_session
+		flash[:message] = 'Logged out.'
+		redirect_to :action => 'login'
+	end
 end

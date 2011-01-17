@@ -1,16 +1,29 @@
 Tay::Application.routes.draw do
-  resources :users
 
-  resources :chat_lines
+	namespace "admin" do
+	  constraints :subdomain => "admin" do
+		resources :photos
+	  end
+	end
+	
+  resources :chat_lines, :except => [:edit, :new, :create]
 
-  resources :chat_rooms
-
-  resources :test_obj2s
-
-  resources :test_objs
+  resources :chat_rooms do
+	  resources :chat_lines 
+  end
 
   get "home/index"
-  root :to => "chat_rooms#index"
+  root :to => "home#index"
+
+  match '/users/login' => "users#login"
+  match '/users/process_login' => "users#process_login"
+  resources :users
+
+  scope "/admin" do
+      #Directs /admin/products/* to Admin::ProductsController
+      #(app/controllers/admin/products_controller.rb)
+     resources :chat_lines
+   end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
